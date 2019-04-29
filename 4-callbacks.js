@@ -33,16 +33,35 @@
 // 3. After 2 seconds are up, call the callback function with the sum
 // 4. Test your work!
 
-const add = (callback, ...args) => {
+// const add = (callback, ...args) => {
+
+//     setTimeout(() => {
+//         const reducer = (accumulator, currentValue) => accumulator + currentValue
+//         const sum = args.reduce(reducer)
+
+//         callback(sum)
+//     }, 2000)
+// }
+
+// add((sum) => {
+//     console.log(sum) // Should print: 5
+// }, 1,4,9,100)
+
+
+//====================================
+//CALLBACK VS PROMISE
+const doWorkCallback = (callback) => {
 
     setTimeout(() => {
-        const reducer = (accumulator, currentValue) => accumulator + currentValue
-        const sum = args.reduce(reducer)
-
-        callback(sum)
+        callback(undefined, [1, 4, 7]) //result
+        // callback('This is my error', undefined) //error
     }, 2000)
 }
 
-add((sum) => {
-    console.log(sum) // Should print: 5
-}, 1,4,9,100)
+doWorkCallback((error, result) => {
+    if (error) {
+        return console.log(error)
+    }
+
+    console.log(result)
+})
